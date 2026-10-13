@@ -1,0 +1,658 @@
+==============================================================================
+EXPLORATORY DATA ANALYSIS
+==============================================================================
+File: Data Science Task Data.xlsx - Result 1.csv
+Shape: 100000 rows x 77 columns
+
+==============================================================================
+1. DATA TYPES
+==============================================================================
+         n_columns
+dtype             
+str             48
+float64         19
+object           5
+bool             3
+int64            2
+
+                    column   dtype  n_unique  n_missing  missing_pct    decision    reason
+                 player_id   int64    100000          0         0.00    drop
+         registration_date     str     99999          0         0.00    keep
+               modified_at     str     99999          0         0.00    drop 
+                 closed_at     str     17808      82192        82.19    keep? 
+                     email     str     99999          0         0.00    drop 
+              phone_number   int64     96599          0         0.00    drop    
+                    status     str         7          0         0.00    keep
+             status_reason     str     10486      66132        66.13    keep
+           is_test_account    bool         2          0         0.00    drop
+              gaming_level     str         2         17         0.02    drop        no variation 
+           aml_risk_rating     str         4       2136         2.14    drop
+          tc_accepted_date     str     99998          0         0.00    drop
+                first_name     str     23660          0         0.00    drop
+               middle_name     str      6595          4         0.00    drop
+                 last_name     str     42517          0         0.00    drop
+                birth_date     str     20157          0         0.00    keep
+                    gender     str         3          0         0.00    keep
+                      city     str      3870          0         0.00    keep?
+                   country     str         2          0         0.00    drop        99% CA
+                occupation     str      3642          1         0.00    keep but for downstream profiling
+             employer_name     str       771      99068        99.07    same as above 
+             employer_city     str       292      99400        99.40    same as above
+          employer_country     str        32      99405        99.40    same as above
+      employer_postal_code     str       432      99560        99.56    same as above
+     employer_phone_number float64       304      99696        99.70    same as above
+         facebook_click_id     str      8496      91489        91.49    keep
+        microsoft_click_id     str      2118      97879        97.88    keep
+           google_click_id     str     23664      76244        76.24    keep 
+                utm_source     str        65      68689        68.69    keep
+                utm_medium     str       653      69792        69.79    keep
+              utm_campaign     str      1684      64103        64.10    keep
+      aml_risk_reason_code     str         8       2136         2.14    keep but for downstream profiling
+                  industry     str       805        331         0.33    keep but for downstream profiling
+                 allow_sms  object         2        355         0.36    
+               allow_email  object         2        355         0.36
+            rg_risk_rating     str         4          0         0.00    keep but for downstream profiling
+             referral_code     str     22017      74174        74.17    keep
+        referrer_player_id float64     17807      75763        75.76    keep
+                      btag     str         3      99997       100.00
+                 vip_level float64         1      98943        98.94
+                     adfcd     str         5      99995       100.00
+           is_bonus_abuser  object         2      94026        94.03
+               utm_content     str       165      70185        70.18
+                  utm_term     str      2491      70071        70.07
+                  ad_group float64         0     100000       100.00
+                    ad_set float64         0     100000       100.00
+        marketing_creative float64         0     100000       100.00
+         marketing_keyword float64         0     100000       100.00
+         marketing_network float64         0     100000       100.00
+            traffic_source     str        25          8         0.01
+            ad_campaign_id float64       102      74128        74.13
+               ad_group_id float64       976      74127        74.13
+             ad_keyword_id float64      2265      74753        74.75
+                    is_pep    bool         2          0         0.00
+                  pep_type     str         2      97588        97.59
+             has_sanctions    bool         2          0         0.00
+           tiktok_click_id     str       376      99624        99.62
+                d_click_id     str         4      99996       100.00
+               utm_variant     str       628      76247        76.25
+      marketing_click_date float64         0     100000       100.00
+        marketing_location float64         0     100000       100.00
+                 loaded_at     str      2208          0         0.00
+           has_mfa_enabled  object         2      18532        18.53
+      portfolio_vip_status     str         2      99642        99.64
+player_vip_account_manager     str         8      99733        99.73
+     vip_status_updated_at     str       358      99642        99.64
+   max_profit_segment_rank float64         8        306         0.31
+operational_profit_segment     str         8          8         0.01
+        ever_self_excluded  object         2      46518        46.52
+     registration_platform     str         3          0         0.00
+        sub_traffic_source     str        28          8         0.01
+         first_deposit_day     str       968      39933        39.93
+            total_deposits float64     15255        214         0.21
+         total_withdrawals float64     20736        214         0.21
+                total_bets float64     40491        214         0.21
+                total_wins float64     45991        214         0.21
+              total_logins float64      2508        214         0.21
+
+Numeric columns (21): ['player_id', 'phone_number', 'employer_phone_number', 'referrer_player_id', 'vip_level', 'ad_group', 'ad_set', 'marketing_creative', 'marketing_keyword', 'marketing_network', 'ad_campaign_id', 'ad_group_id', 'ad_keyword_id', 'marketing_click_date', 'marketing_location', 'max_profit_segment_rank', 'total_deposits', 'total_withdrawals', 'total_bets', 'total_wins', 'total_logins']
+Boolean columns (3): ['is_test_account', 'is_pep', 'has_sanctions']
+Datetime columns (8): ['registration_date', 'modified_at', 'closed_at', 'tc_accepted_date', 'birth_date', 'loaded_at', 'vip_status_updated_at', 'first_deposit_day']
+Categorical/object columns (45)
+
+==============================================================================
+2. MISSING VALUES
+==============================================================================
+                            n_missing  pct_missing  n_present
+marketing_network              100000       100.00          0
+marketing_location             100000       100.00          0
+adfcd                           99995       100.00          5
+marketing_click_date           100000       100.00          0
+d_click_id                      99996       100.00          4
+ad_set                         100000       100.00          0
+marketing_creative             100000       100.00          0
+marketing_keyword              100000       100.00          0
+ad_group                       100000       100.00          0
+btag                            99997       100.00          3
+player_vip_account_manager      99733        99.73        267
+employer_phone_number           99696        99.70        304
+vip_status_updated_at           99642        99.64        358
+portfolio_vip_status            99642        99.64        358
+tiktok_click_id                 99624        99.62        376
+employer_postal_code            99560        99.56        440
+employer_country                99405        99.40        595
+employer_city                   99400        99.40        600
+employer_name                   99068        99.07        932
+vip_level                       98943        98.94       1057
+microsoft_click_id              97879        97.88       2121
+pep_type                        97588        97.59       2412
+is_bonus_abuser                 94026        94.03       5974
+facebook_click_id               91489        91.49       8511
+closed_at                       82192        82.19      17808
+utm_variant                     76247        76.25      23753
+google_click_id                 76244        76.24      23756
+referrer_player_id              75763        75.76      24237
+ad_keyword_id                   74753        74.75      25247
+referral_code                   74174        74.17      25826
+ad_group_id                     74127        74.13      25873
+ad_campaign_id                  74128        74.13      25872
+utm_content                     70185        70.18      29815
+utm_term                        70071        70.07      29929
+utm_medium                      69792        69.79      30208
+utm_source                      68689        68.69      31311
+status_reason                   66132        66.13      33868
+utm_campaign                    64103        64.10      35897
+ever_self_excluded              46518        46.52      53482
+first_deposit_day               39933        39.93      60067
+has_mfa_enabled                 18532        18.53      81468
+aml_risk_rating                  2136         2.14      97864
+aml_risk_reason_code             2136         2.14      97864
+allow_sms                         355         0.36      99645
+allow_email                       355         0.36      99645
+industry                          331         0.33      99669
+max_profit_segment_rank           306         0.31      99694
+total_withdrawals                 214         0.21      99786
+total_logins                      214         0.21      99786
+total_wins                        214         0.21      99786
+total_deposits                    214         0.21      99786
+total_bets                        214         0.21      99786
+gaming_level                       17         0.02      99983
+traffic_source                      8         0.01      99992
+sub_traffic_source                  8         0.01      99992
+operational_profit_segment          8         0.01      99992
+player_id                           0         0.00     100000
+phone_number                        0         0.00     100000
+registration_date                   0         0.00     100000
+modified_at                         0         0.00     100000
+email                               0         0.00     100000
+first_name                          0         0.00     100000
+tc_accepted_date                    0         0.00     100000
+status                              0         0.00     100000
+is_test_account                     0         0.00     100000
+last_name                           0         0.00     100000
+birth_date                          0         0.00     100000
+middle_name                         4         0.00      99996
+gender                              0         0.00     100000
+rg_risk_rating                      0         0.00     100000
+occupation                          1         0.00      99999
+city                                0         0.00     100000
+country                             0         0.00     100000
+is_pep                              0         0.00     100000
+has_sanctions                       0         0.00     100000
+loaded_at                           0         0.00     100000
+registration_platform               0         0.00     100000
+
+Columns with NO missing values: 19
+Columns with ANY missing values: 58
+Columns >90% missing: 24
+Total missing cells: 3504001 (45.51% of all cells)
+
+[saved] eda_output/missing_values.png
+[saved] eda_output/missingness_heatmap.png
+==============================================================================
+3. DESCRIPTIVE STATISTICS - NUMERIC
+==============================================================================
+                            count          mean           std           min           25%           50%           75%           max
+player_id                100000.0  5.429423e+06  3.123198e+06  2.530000e+02  2.728064e+06  5.442616e+06  8.146623e+06  1.080022e+07
+phone_number             100000.0  9.398439e+10  6.839243e+10  1.042100e+04  7.081506e+10  9.329602e+10  1.101590e+11  1.522097e+13
+employer_phone_number       304.0  1.194694e+11  9.215323e+10  9.435000e+03  7.436580e+10  1.043336e+11  1.372506e+11  1.043687e+12
+referrer_player_id        24237.0  4.449339e+06  3.070451e+06  2.070000e+02  1.759431e+06  4.227561e+06  6.943585e+06  1.078990e+07
+vip_level                  1057.0  1.000000e+00  0.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ad_group                      0.0           NaN           NaN           NaN           NaN           NaN           NaN           NaN
+ad_set                        0.0           NaN           NaN           NaN           NaN           NaN           NaN           NaN
+marketing_creative            0.0           NaN           NaN           NaN           NaN           NaN           NaN           NaN
+marketing_keyword             0.0           NaN           NaN           NaN           NaN           NaN           NaN           NaN
+marketing_network             0.0           NaN           NaN           NaN           NaN           NaN           NaN           NaN
+ad_campaign_id            25872.0  1.314899e+16  3.752037e+16  4.832539e+08  2.000203e+10  2.112384e+10  2.149580e+10  1.202133e+17
+ad_group_id               25873.0  1.319896e+16  3.750375e+16  1.429919e+11  1.587143e+11  1.659445e+11  1.707299e+11  1.202191e+17
+ad_keyword_id             25247.0  1.347850e+16  3.792405e+16  1.000002e+07  1.382367e+08  4.285128e+11  1.392175e+12  1.202237e+17
+marketing_click_date          0.0           NaN           NaN           NaN           NaN           NaN           NaN           NaN
+marketing_location            0.0           NaN           NaN           NaN           NaN           NaN           NaN           NaN
+max_profit_segment_rank   99694.0  1.002908e+05  1.332018e+02  1.001000e+05  1.002000e+05  1.003000e+05  1.003000e+05  1.008000e+05
+total_deposits            99786.0  3.422670e+03  2.210578e+04  0.000000e+00  0.000000e+00  2.000000e+01  2.680000e+02  2.044597e+06
+total_withdrawals         99786.0  2.746757e+03  1.879976e+04  0.000000e+00  0.000000e+00  0.000000e+00  1.450000e+02  1.937172e+06
+total_bets                99786.0  2.016664e+04  1.468734e+05  0.000000e+00  0.000000e+00  4.080000e+01  1.239745e+03  1.334522e+07
+total_wins                99786.0  1.911473e+04  1.404222e+05  0.000000e+00  0.000000e+00  2.582000e+01  1.072915e+03  1.285009e+07
+total_logins              99786.0  1.145203e+02  3.724299e+02  0.000000e+00  1.000000e+00  3.000000e+00  3.600000e+01  1.965300e+04
+
+Skewness:
+phone_number               124.884
+total_wins                  30.554
+total_bets                  30.303
+total_withdrawals           26.623
+total_deposits              24.123
+total_logins                 7.635
+employer_phone_number        5.235
+ad_campaign_id               2.503
+ad_group_id                  2.503
+ad_keyword_id                2.459
+max_profit_segment_rank      1.340
+referrer_player_id           0.320
+vip_level                    0.000
+player_id                   -0.013
+ad_group                       NaN
+ad_set                         NaN
+marketing_creative             NaN
+marketing_keyword              NaN
+marketing_network              NaN
+marketing_click_date           NaN
+marketing_location             NaN
+
+==============================================================================
+4. DESCRIPTIVE STATISTICS - CATEGORICAL
+==============================================================================
+                             count  unique                                                                                                                                                                                                                                                                                                         top  top_freq
+column                                                                                                                                                                                                                                                                                                                                                          
+email                       100000   99999                                                                                                                                                                                                                                                                            2574197dd15a1d518ad3422ce8b5fdbf         2
+status                      100000       7                                                                                                                                                                                                                                                                                                    Approved     62654
+status_reason                33868   10486                                                                                                                                                                                                                                                                                              KYC incomplete     13457
+gaming_level                 99983       2                                                                                                                                                                                                                                                                                                 Experienced     99957
+aml_risk_rating              97864       4                                                                                                                                                                                                                                                                                                         Low     96903
+first_name                  100000   23660                                                                                                                                                                                                                                                                            3e06fa3927cbdf4e9d93ba4541acce86       846
+middle_name                  99996    6595                                                                                                                                                                                                                                                                            d41d8cd98f00b204e9800998ecf8427e     81142
+last_name                   100000   42517                                                                                                                                                                                                                                                                            a840409441ca0fdaa1f999e884d0c3ec       878
+gender                      100000       3                                                                                                                                                                                                                                                                                                        Male     56411
+city                        100000    3870                                                                                                                                                                                                                                                                                                    Brampton      3949
+country                     100000       2                                                                                                                                                                                                                                                                                                      Canada     99998
+occupation                   99999    3642                                                                                                                                                                                                                                                                                                  Unemployed     14430
+employer_name                  932     771                                                                                                                                                                                                                                                                            d41d8cd98f00b204e9800998ecf8427e        92
+employer_city                  600     292                                                                                                                                                                                                                                                                                                     Toronto        44
+employer_country               595      32                                                                                                                                                                                                                                                                                                      Canada       529
+employer_postal_code           440     432                                                                                                                                                                                                                                                                                                      P0L1C0         3
+facebook_click_id             8511    8496                                                                                                                                                                                                 PAZXh0bgNhZW0CMTEAAadsf56NyhkTAOUzZDc-4AleEW5iNCBxEyM-vWgRZh5FU8s6lwP5fzE_GY4MRg_aem_pbhLGPlHO7wRhBITKJ9C3Q         3
+microsoft_click_id            2121    2118                                                                                                                                                                                                                                                                            76b332bb620e1742fde35ab73024bc17         3
+google_click_id              23756   23664                                                                                                                                                                                                                                                     EAIaIQobChMItKCMvLmjiAMVDzMIBR0qsgLOEAAYASAAEgKY3vD_BwE        19
+utm_source                   31311      65                                                                                                                                                                                                                                                                                                    google_g     19272
+utm_medium                   30208     653                                                                                                                                                                                                                                                                                                       brand      6285
+utm_campaign                 35897    1684                                                                                                                                                                                                                                                                                       coywb_twelve_test_130      4912
+aml_risk_reason_code         97864       8                                                                                                                                                                                                                                                                                                MultiFactors     97559
+industry                     99669     805                                                                                                                                                                                                                                                                                                     Service     20459
+allow_sms                    99645       2                                                                                                                                                                                                                                                                                                        True     68956
+allow_email                  99645       2                                                                                                                                                                                                                                                                                                        True     69295
+rg_risk_rating              100000       4                                                                                                                                                                                                                                                                                                      NoRisk     94388
+referral_code                25826   22017                                                                                                                                                                                                                                                                                              carolezj2ox7i2        23
+btag                             3       3                                                                                                                                                                                                                                                                                                     a_1b_24         1
+adfcd                            5       5                                                                                                                                                                                                                                                      1697562033.GY-UgPSuY06ios18eb2_Uw.MzE1MDg4OSwyMDUwODg1         1
+is_bonus_abuser               5974       2                                                                                                                                                                                                                                                                                                        True      4965
+utm_content                  29815     165                                                                                                                                                                                                                                                                                              brand_campaign      6247
+utm_term                     29929    2491                                                                                                                                                                                                                                                                                             m_betty casino_      3327
+traffic_source               99992      25                                                                                                                                                                                                                                                                                                     Organic     26701
+pep_type                      2412       2                                                                                                                                                                                                                                                                                                     Unknown      2397
+tiktok_click_id                376     376  E_C_P_CrAB-qI0YTM8GI9Yl73lgaPB1BxnD2s9vuEdHVU9Q1P1VhqeUyvYSrLg0CgtVhs4uSZlPbX19b2l5GbU_k8UXNPpRIz8bE3qaBwMc7kw2PT8ydrDgtsxvU8a57PvLlZxFBpXPkMBpZvwk9Y35SkbT5jJE86NfWlrW4js2om5ErOq4AAe168MnrZYM-vN0X7Lo1I4DQkNFF9OqURAqK_4z9oJItTEVGzh640Ktm3DMfFXXuYSBHYyLjAaIHa2rf6wUtQhQAIYBOPqMdEK-MNWQ9GoHH0SyLTLSTWw         1
+d_click_id                       4       4                                                                                                                                                                                                                                                                                  CLfG_eC7-4sDFemcAAAdP0kihg         1
+utm_variant                  23753     628                                                                                                                                                                                                                                                                                                       brand      3671
+has_mfa_enabled              81468       2                                                                                                                                                                                                                                                                                                       False     80080
+portfolio_vip_status           358       2                                                                                                                                                                                                                                                                                                     Enabled       267
+player_vip_account_manager     267       8                                                                                                                                                                                                                                                                            5a46f83a92921c1f3c7d52c16a28238d        48
+operational_profit_segment   99992       8                                                                                                                                                                                                                                                                                                    LowValue     57977
+ever_self_excluded           53482       2                                                                                                                                                                                                                                                                                                       False     51351
+registration_platform       100000       3                                                                                                                                                                                                                                                                                                         Web     83748
+sub_traffic_source           99992      28                                                                                                                                                                                                                                                                                                     Organic     26701
+
+------------------------------------------------------------------------------
+Value counts for key low-cardinality categoricals
+------------------------------------------------------------------------------
+
+status (7 unique):
+    'Approved'                                      62654 (62.65%)
+    'Pending'                                       16093 (16.09%)
+    'Duplicated'                                    10730 (10.73%)
+    'Closed'                                         4396 ( 4.40%)
+    'Suspended'                                      2765 ( 2.77%)
+    'SelfExclusion'                                  2084 ( 2.08%)
+    'Timeout'                                        1278 ( 1.28%)
+
+status_reason (10486 unique):
+    nan                                             66132 (66.13%)
+    'KYC incomplete'                                13457 (13.46%)
+    'Breach of Terms'                                2152 ( 2.15%)
+    'Document Verification Failed'                   1530 ( 1.53%)
+    'None of the above'                              1140 ( 1.14%)
+    'I keep losing money'                             886 ( 0.89%)
+    'I am taking a break / I don’t play anymore'      585 ( 0.58%)
+    'Within AML Assessment'                           539 ( 0.54%)
+    'I have problems verifying my account or cashing out my money'     442 ( 0.44%)
+    'Manual Verification Required'                    377 ( 0.38%)
+    'I am unhappy with the bonuses and promotions you offer'     320 ( 0.32%)
+    'KYC in progress'                                 305 ( 0.30%)
+    'KYC Address Mismatch'                            273 ( 0.27%)
+    'I don’t like your games'                         264 ( 0.26%)
+    'Responsible Gaming'                              172 ( 0.17%)
+
+gender (3 unique):
+    'Male'                                          56411 (56.41%)
+    'Female'                                        42695 (42.70%)
+    'Other'                                           894 ( 0.89%)
+
+gaming_level (2 unique):
+    'Experienced'                                   99957 (99.96%)
+    'New'                                              26 ( 0.03%)
+    nan                                                17 ( 0.02%)
+
+aml_risk_rating (4 unique):
+    'Low'                                           96903 (96.90%)
+    nan                                              2136 ( 2.14%)
+    'Moderate'                                        646 ( 0.65%)
+    'High'                                            265 ( 0.27%)
+    'Extreme'                                          50 ( 0.05%)
+
+rg_risk_rating (4 unique):
+    'NoRisk'                                        94388 (94.39%)
+    'Low'                                            3932 ( 3.93%)
+    'Medium'                                         1024 ( 1.02%)
+    'High'                                            656 ( 0.66%)
+
+country (2 unique):
+    'Canada'                                        99998 (100.00%)
+    'United States'                                     2 ( 0.00%)
+
+city (3870 unique):
+    'Brampton'                                       3949 ( 3.95%)
+    'Toronto'                                        3729 ( 3.73%)
+    'Hamilton'                                       3612 ( 3.61%)
+    'North York'                                     3439 ( 3.44%)
+    'London'                                         3336 ( 3.34%)
+    'Scarborough'                                    3213 ( 3.21%)
+    'Mississauga'                                    2925 ( 2.93%)
+    'Windsor'                                        2495 ( 2.50%)
+    'Kitchener'                                      1881 ( 1.88%)
+    'Etobicoke'                                      1849 ( 1.85%)
+    'Ottawa'                                         1711 ( 1.71%)
+    'Oshawa'                                         1691 ( 1.69%)
+    'Barrie'                                         1367 ( 1.37%)
+    'Kingston'                                       1360 ( 1.36%)
+    'Brantford'                                      1163 ( 1.16%)
+
+occupation (3642 unique):
+    'Unemployed'                                    14430 (14.43%)
+    'Student'                                       11938 (11.94%)
+    'Retired'                                        8656 ( 8.66%)
+    'Homemaker'                                      6719 ( 6.72%)
+    'Construction Coordinator'                       1341 ( 1.34%)
+    'Administrative Clerk'                           1194 ( 1.19%)
+    'Personal Support Worker'                        1074 ( 1.07%)
+    'Chief Executive Officer'                         921 ( 0.92%)
+    'Job Analyst'                                     852 ( 0.85%)
+    'Manufacturing Machine Operator'                  621 ( 0.62%)
+    'Sales Clerk Supervisor'                          565 ( 0.56%)
+    'Truck Driver'                                    557 ( 0.56%)
+    'Assistant Store Manager'                         550 ( 0.55%)
+    'Fast Food Cook'                                  543 ( 0.54%)
+    'Kitchen Chef'                                    495 ( 0.50%)
+
+industry (805 unique):
+    'Service'                                       20459 (20.46%)
+    'Unemployed'                                    11373 (11.37%)
+    'Student'                                        9972 ( 9.97%)
+    'Retired'                                        7413 ( 7.41%)
+    'Service Industries'                             6328 ( 6.33%)
+    'Manufacturing'                                  6092 ( 6.09%)
+    'service'                                        5676 ( 5.68%)
+    'Homemaker'                                      5189 ( 5.19%)
+    'Consumer Products'                              4488 ( 4.49%)
+    'unemployed'                                     3019 ( 3.02%)
+    'Technologies'                                   2919 ( 2.92%)
+    'Manufacturing Industries'                       2710 ( 2.71%)
+    'manufacturing'                                  1982 ( 1.98%)
+    'student'                                        1913 ( 1.91%)
+    'homemaker'                                      1499 ( 1.50%)
+
+allow_sms (2 unique):
+    True                                            68956 (68.96%)
+    False                                           30689 (30.69%)
+    nan                                               355 ( 0.36%)
+
+allow_email (2 unique):
+    True                                            69295 (69.30%)
+    False                                           30350 (30.35%)
+    nan                                               355 ( 0.36%)
+
+is_test_account (2 unique):
+    False                                           99787 (99.79%)
+    True                                              213 ( 0.21%)
+
+is_bonus_abuser (2 unique):
+    nan                                             94026 (94.03%)
+    True                                             4965 ( 4.96%)
+    False                                            1009 ( 1.01%)
+
+is_pep (2 unique):
+    False                                           99902 (99.90%)
+    True                                               98 ( 0.10%)
+
+has_sanctions (2 unique):
+    False                                           99977 (99.98%)
+    True                                               23 ( 0.02%)
+
+ever_self_excluded (2 unique):
+    False                                           51351 (51.35%)
+    nan                                             46518 (46.52%)
+    True                                             2131 ( 2.13%)
+
+registration_platform (3 unique):
+    'Web'                                           83748 (83.75%)
+    'iOS App'                                       11271 (11.27%)
+    'Android App'                                    4981 ( 4.98%)
+
+traffic_source (25 unique):
+    'Organic'                                       26701 (26.70%)
+    'Google'                                        25514 (25.51%)
+    'Referred'                                      16798 (16.80%)
+    'Facebook'                                       8823 ( 8.82%)
+    'Referred From Paid Traffic'                     7434 ( 7.43%)
+    'Liftoff'                                        3477 ( 3.48%)
+    'Unclassified UTM'                               2640 ( 2.64%)
+    'Moloco'                                         2231 ( 2.23%)
+    'Microsoft'                                      2113 ( 2.11%)
+    'TikTok'                                         1728 ( 1.73%)
+    'Apple Ads'                                      1668 ( 1.67%)
+    'betty.com'                                       292 ( 0.29%)
+    'Snapchat'                                        282 ( 0.28%)
+    'Organic Social'                                  180 ( 0.18%)
+    'Brand'                                            50 ( 0.05%)
+
+sub_traffic_source (28 unique):
+    'Organic'                                       26701 (26.70%)
+    'Google'                                        25514 (25.51%)
+    'Referred'                                      16798 (16.80%)
+    'Facebook'                                       8823 ( 8.82%)
+    'Referred From Paid Traffic'                     7434 ( 7.43%)
+    'Liftoff'                                        3477 ( 3.48%)
+    'Unclassified UTM'                               2640 ( 2.64%)
+    'Moloco'                                         2231 ( 2.23%)
+    'Microsoft'                                      2113 ( 2.11%)
+    'TikTok'                                         1728 ( 1.73%)
+    'Apple Ads'                                      1668 ( 1.67%)
+    'betty.com'                                       292 ( 0.29%)
+    'Snapchat'                                        282 ( 0.28%)
+    'Organic Social'                                  180 ( 0.18%)
+    'General'                                          29 ( 0.03%)
+
+utm_source (65 unique):
+    nan                                             68689 (68.69%)
+    'google_g'                                      19272 (19.27%)
+    'fb'                                             4704 ( 4.70%)
+    'google'                                         1438 ( 1.44%)
+    'ig'                                             1341 ( 1.34%)
+    'an'                                              910 ( 0.91%)
+    'bing_o'                                          879 ( 0.88%)
+    'bing_a'                                          477 ( 0.48%)
+    'google_x'                                        442 ( 0.44%)
+    'bing'                                            363 ( 0.36%)
+    'TikTok'                                          303 ( 0.30%)
+    'google_'                                         291 ( 0.29%)
+    'google_ytv'                                      185 ( 0.18%)
+    'instagram'                                       142 ( 0.14%)
+    'trustpilot'                                      128 ( 0.13%)
+
+operational_profit_segment (8 unique):
+    'LowValue'                                      57977 (57.98%)
+    'NegativeValue'                                 23292 (23.29%)
+    'MediumValue'                                    5366 ( 5.37%)
+    'Toddler'                                        5241 ( 5.24%)
+    'HighValue'                                      2783 ( 2.78%)
+    'Vip1'                                           2675 ( 2.67%)
+    'Vip2'                                           1337 ( 1.34%)
+    'Vip3'                                           1321 ( 1.32%)
+    nan                                                 8 ( 0.01%)
+
+portfolio_vip_status (2 unique):
+    nan                                             99642 (99.64%)
+    'Enabled'                                         267 ( 0.27%)
+    'Disabled'                                         91 ( 0.09%)
+
+vip_status_updated_at (358 unique):
+    NaT                                             99642 (99.64%)
+    Timestamp('2025-10-02 17:46:36.594000')             1 ( 0.00%)
+    Timestamp('2025-10-14 16:45:59.439000')             1 ( 0.00%)
+    Timestamp('2025-11-13 01:15:31.430000')             1 ( 0.00%)
+    Timestamp('2025-10-14 19:54:23.049000')             1 ( 0.00%)
+    Timestamp('2025-09-27 18:50:46.117000')             1 ( 0.00%)
+    Timestamp('2025-02-01 08:11:50.524072')             1 ( 0.00%)
+    Timestamp('2025-07-29 08:43:28.908000')             1 ( 0.00%)
+    Timestamp('2025-10-31 16:23:50.820000')             1 ( 0.00%)
+    Timestamp('2025-01-31 06:12:43.135388')             1 ( 0.00%)
+    Timestamp('2025-09-11 04:16:50.274000')             1 ( 0.00%)
+    Timestamp('2025-10-02 00:47:39.081000')             1 ( 0.00%)
+    Timestamp('2025-09-09 12:52:25.857000')             1 ( 0.00%)
+    Timestamp('2025-03-31 15:38:16.822000')             1 ( 0.00%)
+    Timestamp('2025-10-07 00:29:53.433000')             1 ( 0.00%)
+
+max_profit_segment_rank (8 unique):
+    100300.0                                        54265 (54.26%)
+    100200.0                                        16587 (16.59%)
+    100100.0                                        13644 (13.64%)
+    100400.0                                         6076 ( 6.08%)
+    100500.0                                         3130 ( 3.13%)
+    100600.0                                         3041 ( 3.04%)
+    100800.0                                         1486 ( 1.49%)
+    100700.0                                         1465 ( 1.47%)
+    nan                                               306 ( 0.31%)
+
+has_mfa_enabled (2 unique):
+    False                                           80080 (80.08%)
+    nan                                             18532 (18.53%)
+    True                                             1388 ( 1.39%)
+
+marketing_network (0 unique):
+    nan                                            100000 (100.00%)
+
+==============================================================================
+5. DISTRIBUTIONS - NUMERIC
+==============================================================================
+[saved] eda_output/numeric_distributions.png
+[saved] eda_output/numeric_distributions_log.png
+Skewed (|skew| > 2) numeric columns: ['phone_number', 'employer_phone_number', 'ad_campaign_id', 'ad_group_id', 'ad_keyword_id', 'total_deposits', 'total_withdrawals', 'total_bets', 'total_wins', 'total_logins']
+
+[saved] eda_output/numeric_boxplots.png
+==============================================================================
+6. DISTRIBUTIONS - CATEGORICAL
+==============================================================================
+Columns plotted as bar charts (2-25 unique values): ['status', 'gaming_level', 'aml_risk_rating', 'gender', 'country', 'aml_risk_reason_code', 'allow_sms', 'allow_email', 'rg_risk_rating', 'btag', 'adfcd', 'is_bonus_abuser', 'traffic_source', 'pep_type', 'd_click_id', 'has_mfa_enabled', 'portfolio_vip_status', 'player_vip_account_manager', 'operational_profit_segment', 'ever_self_excluded', 'registration_platform']
+[saved] eda_output/categorical_distributions.png
+
+High-cardinality categorical columns (24):
+    email: 99999 unique values, 0 missing
+    status_reason: 10486 unique values, 66132 missing
+    first_name: 23660 unique values, 0 missing
+    middle_name: 6595 unique values, 4 missing
+    last_name: 42517 unique values, 0 missing
+    city: 3870 unique values, 0 missing
+    occupation: 3642 unique values, 1 missing
+    employer_name: 771 unique values, 99068 missing
+    employer_city: 292 unique values, 99400 missing
+    employer_country: 32 unique values, 99405 missing
+    employer_postal_code: 432 unique values, 99560 missing
+    facebook_click_id: 8496 unique values, 91489 missing
+    microsoft_click_id: 2118 unique values, 97879 missing
+    google_click_id: 23664 unique values, 76244 missing
+    utm_source: 65 unique values, 68689 missing
+    utm_medium: 653 unique values, 69792 missing
+    utm_campaign: 1684 unique values, 64103 missing
+    industry: 805 unique values, 331 missing
+    referral_code: 22017 unique values, 74174 missing
+    utm_content: 165 unique values, 70185 missing
+    utm_term: 2491 unique values, 70071 missing
+    tiktok_click_id: 376 unique values, 99624 missing
+    utm_variant: 628 unique values, 76247 missing
+    sub_traffic_source: 28 unique values, 8 missing
+[saved] eda_output/high_cardinality_top15.png
+
+Date column ranges:
+    registration_date: 2023-02-17 15:20:10.294000 -> 2025-11-13 07:39:26.364000  (missing 0)
+    modified_at: 2023-03-26 05:00:15.598000 -> 2025-11-13 07:39:26.364000  (missing 0)
+    closed_at: 2023-05-03 17:16:13.261000 -> 2025-11-13 06:49:24.327000  (missing 82192)
+    tc_accepted_date: 2023-02-22 09:35:38.849000 -> 2025-11-13 07:39:26.364000  (missing 0)
+    birth_date: 0196-09-13 00:00:00 -> 2020-01-19 00:00:00  (missing 0)
+    loaded_at: 2025-06-03 08:46:46 -> 2025-11-13 08:03:42  (missing 0)
+    vip_status_updated_at: 2025-01-31 05:56:49.799134 -> 2025-11-13 06:02:07.394000  (missing 99642)
+    first_deposit_day: 2023-02-23 00:00:00 -> 2025-11-13 00:00:00  (missing 39933)
+[saved] eda_output/datetime_distributions.png
+
+==============================================================================
+7. CORRELATIONS
+==============================================================================
+Excluded from correlation (100% missing): ['ad_group', 'ad_set', 'marketing_creative', 'marketing_keyword', 'marketing_network', 'marketing_click_date', 'marketing_location']
+Pearson correlation matrix:
+                         player_id  phone_number  employer_phone_number  referrer_player_id  vip_level  ad_campaign_id  ad_group_id  ad_keyword_id  max_profit_segment_rank  total_deposits  total_withdrawals  total_bets  total_wins  total_logins
+player_id                    1.000        -0.006                 -0.030               0.725        NaN          -0.085       -0.085         -0.083                   -0.261          -0.135             -0.129      -0.120      -0.119        -0.256
+phone_number                -0.006         1.000                  0.175               0.016        NaN           0.009        0.009          0.008                    0.013           0.006              0.005       0.008       0.007        -0.001
+employer_phone_number       -0.030         0.175                  1.000              -0.185        NaN          -0.013       -0.013         -0.020                    0.065          -0.015             -0.013      -0.025      -0.025         0.017
+referrer_player_id           0.725         0.016                 -0.185               1.000        NaN           0.344        0.375         -0.085                   -0.264          -0.124             -0.118      -0.113      -0.112        -0.224
+vip_level                      NaN           NaN                    NaN                 NaN        NaN             NaN          NaN            NaN                      NaN             NaN                NaN         NaN         NaN           NaN
+ad_campaign_id              -0.085         0.009                 -0.013               0.344        NaN           1.000        1.000          1.000                   -0.017          -0.023             -0.021      -0.022      -0.022        -0.034
+ad_group_id                 -0.085         0.009                 -0.013               0.375        NaN           1.000        1.000          1.000                   -0.017          -0.023             -0.021      -0.022      -0.022        -0.034
+ad_keyword_id               -0.083         0.008                 -0.020              -0.085        NaN           1.000        1.000          1.000                   -0.018          -0.024             -0.022      -0.022      -0.022        -0.035
+max_profit_segment_rank     -0.261         0.013                  0.065              -0.264        NaN          -0.017       -0.017         -0.018                    1.000           0.427              0.384       0.405       0.400         0.510
+total_deposits              -0.135         0.006                 -0.015              -0.124        NaN          -0.023       -0.023         -0.024                    0.427           1.000              0.983       0.871       0.869         0.541
+total_withdrawals           -0.129         0.005                 -0.013              -0.118        NaN          -0.021       -0.021         -0.022                    0.384           0.983              1.000       0.804       0.805         0.530
+total_bets                  -0.120         0.008                 -0.025              -0.113        NaN          -0.022       -0.022         -0.022                    0.405           0.871              0.804       1.000       1.000         0.457
+total_wins                  -0.119         0.007                 -0.025              -0.112        NaN          -0.022       -0.022         -0.022                    0.400           0.869              0.805       1.000       1.000         0.454
+total_logins                -0.256        -0.001                  0.017              -0.224        NaN          -0.034       -0.034         -0.035                    0.510           0.541              0.530       0.457       0.454         1.000
+
+Top 20 strongest |correlations|:
+    ad_campaign_id <-> ad_keyword_id: +1.000
+    ad_group_id <-> ad_keyword_id: +1.000
+    ad_campaign_id <-> ad_group_id: +1.000
+    total_bets <-> total_wins: +1.000
+    total_deposits <-> total_withdrawals: +0.983
+    total_deposits <-> total_bets: +0.871
+    total_deposits <-> total_wins: +0.869
+    total_withdrawals <-> total_wins: +0.805
+    total_withdrawals <-> total_bets: +0.804
+    player_id <-> referrer_player_id: +0.725
+    total_deposits <-> total_logins: +0.541
+    total_withdrawals <-> total_logins: +0.530
+    max_profit_segment_rank <-> total_logins: +0.510
+    total_bets <-> total_logins: +0.457
+    total_wins <-> total_logins: +0.454
+    max_profit_segment_rank <-> total_deposits: +0.427
+    max_profit_segment_rank <-> total_bets: +0.405
+    max_profit_segment_rank <-> total_wins: +0.400
+    max_profit_segment_rank <-> total_withdrawals: +0.384
+    referrer_player_id <-> ad_group_id: +0.375
+
+Moderate/strong correlations (|r| >= 0.5):
+    ad_campaign_id <-> ad_keyword_id: +1.000
+    ad_group_id <-> ad_keyword_id: +1.000
+    ad_campaign_id <-> ad_group_id: +1.000
+    total_bets <-> total_wins: +1.000
+    total_deposits <-> total_withdrawals: +0.983
+    total_deposits <-> total_bets: +0.871
+    total_deposits <-> total_wins: +0.869
+    total_withdrawals <-> total_wins: +0.805
+    total_withdrawals <-> total_bets: +0.804
+    player_id <-> referrer_player_id: +0.725
+    total_deposits <-> total_logins: +0.541
+    total_withdrawals <-> total_logins: +0.530
+    max_profit_segment_rank <-> total_logins: +0.510
+
+[saved] eda_output/correlation_heatmap.png
+[saved] eda_output/correlation_heatmap_spearman.png
+[saved] eda_output/correlation_scatters.png
+
+==============================================================================
+8. ADDITIONAL NOTES
+==============================================================================
+Duplicate rows: 0
+player_id unique: 100000 / 100000 (duplicates: 0)
+Numeric columns: 21, Categorical: 45, Datetime: 8, Boolean: 3

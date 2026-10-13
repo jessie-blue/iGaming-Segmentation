@@ -1,4 +1,4 @@
-# Betty_v1 — Player Segmentation & Clustering
+# Player Segmentation & Clustering
 
 A data-science project that turns **100,000 raw player records** from a single CSV
 into **six actionable player segments** (product / marketing / business interpretation),

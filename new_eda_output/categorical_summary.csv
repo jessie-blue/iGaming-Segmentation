@@ -1,0 +1,9 @@
+feature,n_categories,missing_%,rare_cats(<1%),rare_cat_%,rare_rows_%
+status,7,0.0,0,0.0,0.0
+country,2,0.0,1,50.0,0.0
+gender,3,0.0,1,33.33,0.89
+gaming_level,2,0.017,1,50.0,0.03
+traffic_source,25,0.008,14,56.0,0.87
+sub_traffic_source,28,0.008,17,60.71,0.86
+registration_platform,3,0.0,0,0.0,0.0
+aml_risk_rating,4,2.136,3,75.0,0.96

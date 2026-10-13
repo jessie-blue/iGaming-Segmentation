@@ -1,0 +1,79 @@
+feature,category,frequency,percentage,is_rare
+status,Approved,62654,62.653999999999996,False
+status,Pending,16093,16.093,False
+status,Duplicated,10730,10.73,False
+status,Closed,4396,4.396,False
+status,Suspended,2765,2.765,False
+status,SelfExclusion,2084,2.084,False
+status,Timeout,1278,1.278,False
+country,Canada,99998,99.998,False
+country,United States,2,0.002,True
+gender,Male,56411,56.411,False
+gender,Female,42695,42.695,False
+gender,Other,894,0.894,True
+gaming_level,Experienced,99957,99.957,False
+gaming_level,New,26,0.026,True
+gaming_level,(missing),17,0.017,False
+traffic_source,Organic,26701,26.701000000000004,False
+traffic_source,Google,25514,25.514,False
+traffic_source,Referred,16798,16.798,False
+traffic_source,Facebook,8823,8.823,False
+traffic_source,Referred From Paid Traffic,7434,7.434,False
+traffic_source,Liftoff,3477,3.4770000000000003,False
+traffic_source,Unclassified UTM,2640,2.64,False
+traffic_source,Moloco,2231,2.231,False
+traffic_source,Microsoft,2113,2.113,False
+traffic_source,TikTok,1728,1.728,False
+traffic_source,Apple Ads,1668,1.6680000000000001,False
+traffic_source,betty.com,292,0.292,True
+traffic_source,Snapchat,282,0.28200000000000003,True
+traffic_source,Organic Social,180,0.18,True
+traffic_source,Brand,50,0.05,True
+traffic_source,Google_vpr,13,0.013,True
+traffic_source,Unknown,13,0.013,True
+traffic_source,Twitter,12,0.012,True
+traffic_source,Criteo,8,0.008,True
+traffic_source,(missing),8,0.008,False
+traffic_source,Adform,5,0.005,True
+traffic_source,Web to App,3,0.003,True
+traffic_source,Reddit,3,0.003,True
+traffic_source,Local Publisher,2,0.002,True
+traffic_source,Scenarios,1,0.001,True
+traffic_source,Google_vpr_cad,1,0.001,True
+sub_traffic_source,Organic,26701,26.701000000000004,False
+sub_traffic_source,Google,25514,25.514,False
+sub_traffic_source,Referred,16798,16.798,False
+sub_traffic_source,Facebook,8823,8.823,False
+sub_traffic_source,Referred From Paid Traffic,7434,7.434,False
+sub_traffic_source,Liftoff,3477,3.4770000000000003,False
+sub_traffic_source,Unclassified UTM,2640,2.64,False
+sub_traffic_source,Moloco,2231,2.231,False
+sub_traffic_source,Microsoft,2113,2.113,False
+sub_traffic_source,TikTok,1728,1.728,False
+sub_traffic_source,Apple Ads,1668,1.6680000000000001,False
+sub_traffic_source,betty.com,292,0.292,True
+sub_traffic_source,Snapchat,282,0.28200000000000003,True
+sub_traffic_source,Organic Social,180,0.18,True
+sub_traffic_source,General,29,0.029,True
+sub_traffic_source,Instagram,18,0.018000000000000002,True
+sub_traffic_source,Google_vpr,13,0.013,True
+sub_traffic_source,Unknown,13,0.013,True
+sub_traffic_source,Twitter,12,0.012,True
+sub_traffic_source,Criteo,8,0.008,True
+sub_traffic_source,(missing),8,0.008,False
+sub_traffic_source,Adform,5,0.005,True
+sub_traffic_source,Web to App,3,0.003,True
+sub_traffic_source,Reddit,3,0.003,True
+sub_traffic_source,Local Publisher,2,0.002,True
+sub_traffic_source,DV 360,2,0.002,True
+sub_traffic_source,Scenarios,1,0.001,True
+sub_traffic_source,Gumgum,1,0.001,True
+sub_traffic_source,Google_vpr_cad,1,0.001,True
+registration_platform,Web,83748,83.748,False
+registration_platform,iOS App,11271,11.271,False
+registration_platform,Android App,4981,4.981,False
+aml_risk_rating,Low,96903,96.90299999999999,False
+aml_risk_rating,(missing),2136,2.136,False
+aml_risk_rating,Moderate,646,0.6459999999999999,True
+aml_risk_rating,High,265,0.265,True
+aml_risk_rating,Extreme,50,0.05,True

@@ -1,0 +1,94 @@
+group,feature,kind,formula
+1. Lifecycle,registration_date,existing,source
+1. Lifecycle,first_deposit_day,existing,source
+1. Lifecycle,closed_at,existing,source
+1. Lifecycle,status,existing,source
+1. Lifecycle,age,derived,"(REFERENCE_DATE - birth_date).days / 365.25, kept in [18,100]"
+1. Lifecycle,tenure_days,derived,(REFERENCE_DATE - registration_date).days
+1. Lifecycle,days_since_registration,derived,alias of tenure_days
+1. Lifecycle,account_lifetime_days,derived,"(closed_at - registration_date).days, else tenure_days"
+1. Lifecycle,time_to_first_deposit,derived,first_deposit_day - registration_date (calendar days)
+1. Lifecycle,is_closed,derived,closed_at present OR status in terminal states
+1. Lifecycle,is_active,derived,status == 'Approved'
+2. Engagement / Activity,total_logins,existing,source
+2. Engagement / Activity,login_rate,derived,total_logins / tenure_months
+2. Engagement / Activity,logins_per_month,derived,alias of login_rate
+2. Engagement / Activity,login_intensity,derived,total_logins / account_lifetime_days
+3. Economic / Value,total_deposits,existing,source
+3. Economic / Value,total_withdrawals,existing,source
+3. Economic / Value,total_bets,existing,source
+3. Economic / Value,total_wins,existing,source
+3. Economic / Value,net_deposits,derived,total_deposits - total_withdrawals
+3. Economic / Value,withdrawal_ratio,derived,total_withdrawals / total_deposits
+3. Economic / Value,deposit_rate,derived,total_deposits / tenure_months
+3. Economic / Value,withdrawal_rate,derived,total_withdrawals / tenure_months
+3. Economic / Value,betting_rate,derived,total_bets / tenure_months
+3. Economic / Value,winning_rate,derived,total_wins / tenure_months
+3. Economic / Value,bets_to_deposit_ratio,derived,total_bets / total_deposits
+3. Economic / Value,wins_to_bets_ratio,derived,total_wins / total_bets
+3. Economic / Value,GGR,derived (conditional),total_bets - total_wins (both present)
+3. Economic / Value,GGR_rate,derived (conditional),GGR / tenure_months
+3. Economic / Value,GGR_to_deposit_ratio,derived (conditional),GGR / total_deposits
+4. Player Value / Intensity,deposits_per_login,derived,total_deposits / total_logins
+4. Player Value / Intensity,bets_per_login,derived,total_bets / total_logins
+4. Player Value / Intensity,wins_per_login,derived,total_wins / total_logins
+4. Player Value / Intensity,net_deposit_per_login,derived,net_deposits / total_logins
+4. Player Value / Intensity,betting_intensity,derived,total_bets / account_lifetime_days
+4. Player Value / Intensity,economic_value_per_day,derived,GGR / account_lifetime_days
+5. Acquisition,traffic_source,existing,source
+5. Acquisition,sub_traffic_source,existing,source
+5. Acquisition,registration_platform,existing,source
+5. Acquisition,utm_source,existing,source
+5. Acquisition,utm_medium,existing,source
+5. Acquisition,utm_campaign,existing,source
+5. Acquisition,utm_content,existing,source
+5. Acquisition,utm_term,existing,source
+5. Acquisition,referral_code,existing,source
+5. Acquisition,referrer_player_id,existing,source
+5. Acquisition,referral_flag,derived,referral_code or referrer_player_id present
+5. Acquisition,paid_acquisition_flag,derived,acquisition_channel starts with 'Paid'
+5. Acquisition,organic_acquisition_flag,derived,acquisition_channel == 'Organic'
+5. Acquisition,affiliate_flag,derived,btag present or 'affiliate' marker (3 rows)
+5. Acquisition,acquisition_channel,derived,channel mapping of traffic_source (7 classes)
+5. Acquisition,campaign_present_flag,derived,utm_campaign present
+6. Demographics,gender,existing,source
+6. Demographics,country,existing,source
+6. Demographics,city,existing,source
+6. Demographics,occupation,existing,source
+6. Demographics,age,shared,same column as group 1
+6. Demographics,age_band,derived,binning of age: 18-24 / 25-34 / ... / 65+ / Unknown
+6. Demographics,occupation_group,derived,"normalized exact match -> Student/Retired/Unemployed/Homemaker, else Employed, NA -> Unknown"
+7. VIP / Commercial,vip_level,existing,source
+7. VIP / Commercial,portfolio_vip_status,existing,source
+7. VIP / Commercial,player_vip_account_manager,existing,source
+7. VIP / Commercial,operational_profit_segment,existing,source
+7. VIP / Commercial,max_profit_segment_rank,existing,source
+7. VIP / Commercial,is_vip,derived,vip_level present OR status Enabled OR segment in Vip1-3
+7. VIP / Commercial,vip_status_age_days,derived,(REFERENCE_DATE - vip_status_updated_at).days
+8. AML / Compliance,aml_risk_rating,existing,source
+8. AML / Compliance,is_pep,existing,source
+8. AML / Compliance,has_sanctions,existing,source
+8. AML / Compliance,compliance_risk_flag,derived,AML in High/Extreme OR PEP OR sanctions; NA if rating missing
+9. Responsible Gambling,ever_self_excluded,existing,source
+9. Responsible Gambling,self_exclusion_flag,derived,ever_self_excluded OR status == 'SelfExclusion'; NA if unrecorded
+10. Fraud / Abuse,is_bonus_abuser,existing,source
+10. Fraud / Abuse,bonus_abuse_flag,derived,is_bonus_abuser as nullable boolean; NA = not assessed
+11. Account / Preferences,gaming_level,existing,source
+11. Account / Preferences,allow_sms,existing,source
+11. Account / Preferences,allow_email,existing,source
+11. Account / Preferences,has_mfa_enabled,existing,source
+11. Account / Preferences,marketing_contactable,derived,allow_sms OR allow_email (Kleene)
+11. Account / Preferences,security_enabled,derived,has_mfa_enabled as nullable boolean
+12. Excluded / Technical,player_id,key,not carried (player_id = table key)
+12. Excluded / Technical,email,excluded,not carried (player_id = table key)
+12. Excluded / Technical,phone_number,excluded,not carried (player_id = table key)
+12. Excluded / Technical,first_name,excluded,not carried (player_id = table key)
+12. Excluded / Technical,middle_name,excluded,not carried (player_id = table key)
+12. Excluded / Technical,last_name,excluded,not carried (player_id = table key)
+12. Excluded / Technical,employer_name,excluded,not carried (player_id = table key)
+12. Excluded / Technical,employer_city,excluded,not carried (player_id = table key)
+12. Excluded / Technical,employer_country,excluded,not carried (player_id = table key)
+12. Excluded / Technical,employer_postal_code,excluded,not carried (player_id = table key)
+12. Excluded / Technical,employer_phone_number,excluded,not carried (player_id = table key)
+12. Excluded / Technical,modified_at,excluded,not carried (player_id = table key)
+12. Excluded / Technical,loaded_at,excluded,not carried (player_id = table key)

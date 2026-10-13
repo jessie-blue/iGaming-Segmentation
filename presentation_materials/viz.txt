@@ -1,0 +1,73 @@
+VISUALISATIONS — presentation_materials/viz
+=============================================
+These 6 images were produced by models/clustering_models.ipynb and used in
+Betty_Player_Segmentation.pptx. Input data: 59,922 complete-case players,
+10 z-scored log features. All numbers below match models/csv/metrics files.
+
+1. kmeans_elbow.png
+   - What: line plot of K-Means inertia (sum of squared distances to each
+     player's cluster centre) against k = 2..10.
+   - How to read: as k grows, inertia always falls; the "elbow" (a sharp bend
+     where extra groups stop buying much compactness) is the classic choice.
+   - Numbers: inertia drops from ~435,007 (k=2) to ~210,272 (k=10); the curve
+     bends gradually, and there is NO single dramatic elbow.
+   - Takeaway: the plot alone is indecisive, which is why k = 6 was set by the
+     business as six actionable segments (not by pure metric optimality).
+
+2. kmeans_silhouette.png
+   - What: bar/line of the mean Silhouette score for k = 2..10.
+   - How to read: higher = better (players are close to their own cluster and
+     far from others). Scores near 0.2-0.3 indicate soft, fuzzy groups.
+   - Numbers: k=2 is highest (0.267), k=3 0.266, k=5 0.263, k=6 0.234 -
+     k=2/3/5 are a statistical near-tie.
+   - Takeaway: no k is a clean winner; k=6 (0.234) is acceptable for
+     commercial tiering. Confirms clusters are "real but soft".
+
+3. kmeans_profiles.png
+   - What: heatmap of the 6 cluster centres over the 10 z-scored features
+     (rows = clusters, columns = features; red/teal = high/low vs average).
+   - How to read: a red block means "this segment sits far ABOVE the average
+     player" on that measurement, teal = far below.
+   - What it encodes:
+     * C2 (Whales): high on deposits, withdrawals, logins, net - the money group.
+     * C4 (Net-Loss): highest withdrawal_ratio and negative net_deposits.
+     * C1 (Dormant): low on almost everything.
+     * C5 (Slow-Converters): extreme high on time_to_first_deposit (~74 days).
+   - Takeaway: each segment is a distinct behavioural signature, not just
+     "big vs small".
+
+4. kmeans_3d_preview.png
+   - What: a static frame of the rotating 3D scatter of all profiled players
+     in the first 3 PCA components, coloured by K-Means cluster (grey = noise,
+     none here). The full rotating version is models/viz/kmeans_3d.gif.
+   - Numbers: PCA-3D explains 70.2% of variance (2D = 58.5%); PCA is used
+     for visualisation only, never as a model input.
+   - How to read: distance between colour blobs = how separable the segments
+     are in reduced space. Blobs overlap, matching the soft silhouette scores.
+
+5. model_comparison.png
+   - What: grouped bar chart comparing all five clustering models on the main
+     quality metric (Silhouette), plus stability.
+   - Models/configs: K-Means k=6; GMM k=3; Hierarchical (Ward) k=4 on n=6,000;
+     DBSCAN eps=1.0, min_samples=20 on n=15,000 (2,375 noise); HDBSCAN
+     min_cluster_size=500 on full data (31,438 noise).
+   - Numbers (silhouette): K-Means 0.234, GMM 0.239 (best), Hierarchical 0.228,
+     DBSCAN 0.137, HDBSCAN -0.142 (worst - it labels half the data as noise).
+   - Takeaway: GMM squeaks ahead on separation, but K-Means wins overall when
+     stability and actionable, noise-free segments are considered.
+
+6. stability_comparison.png
+   - What: bar chart of reproducibility - mean Adjusted Rand Index (ARI) per
+     model across 5 repeats (10 pairwise comparisons), with +/- std error bars.
+   - Numbers (ARI): K-Means 0.996 +/- 0.002 (almost identical every run);
+     DBSCAN 0.855 +/- 0.015; GMM 0.804 +/- 0.240; HDBSCAN 0.640 +/- 0.201;
+     Hierarchical 0.579 +/- 0.119.
+   - How to read: taller bar = the algorithm gives the same groups every time;
+     long error bars = unstable, hard to build business rules on.
+   - Takeaway: K-Means is by far the most reproducible - the reason it was
+     chosen as the production segmentation.
+
+Companion files (remain in models/viz, animation of #4 for all models):
+   kmeans_3d.gif, gmm_3d*.gif/png, hier_3d*.gif/png, dbscan_3d*.gif/png,
+   hdbscan_3d*.gif/png (96 frames @ 12 fps, ~8s per rotation) plus their
+   PCA 2D scatters, kmeans knee charts, dendrogram, AIC/BIC and profile plots.

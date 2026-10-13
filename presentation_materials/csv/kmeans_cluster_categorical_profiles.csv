@@ -1,0 +1,194 @@
+cluster,dimension,category,pct_within_cluster
+0,status,Approved,90.174
+0,status,Closed,4.142
+0,status,Duplicated,0.518
+0,status,Suspended,1.487
+0,status,SelfExclusion,1.906
+0,status,Timeout,1.774
+1,status,Approved,89.301
+1,status,Closed,5.492
+1,status,Duplicated,0.958
+1,status,Suspended,3.786
+1,status,SelfExclusion,0.322
+1,status,Timeout,0.142
+2,status,Approved,79.438
+2,status,Closed,4.617
+2,status,Duplicated,0.732
+2,status,Suspended,3.143
+2,status,SelfExclusion,6.675
+2,status,Timeout,5.386
+3,status,Approved,83.342
+3,status,Closed,6.163
+3,status,Duplicated,1.309
+3,status,Suspended,3.101
+3,status,SelfExclusion,4.536
+3,status,Timeout,1.547
+4,status,Approved,88.234
+4,status,Closed,3.262
+4,status,Duplicated,0.628
+4,status,Suspended,2.191
+4,status,SelfExclusion,3.335
+4,status,Timeout,2.351
+5,status,Approved,85.046
+5,status,Pending,0.058
+5,status,Closed,3.717
+5,status,Duplicated,0.9
+5,status,Suspended,3.833
+5,status,SelfExclusion,4.007
+5,status,Timeout,2.439
+0,traffic_source,Organic,22.703
+0,traffic_source,Google,20.511
+0,traffic_source,Referred,22.615
+0,traffic_source,Facebook,6.554
+0,traffic_source,Referred From Paid Traffic,10.586
+0,traffic_source,Liftoff,5.023
+0,traffic_source,Moloco,3.239
+1,traffic_source,Organic,30.488
+1,traffic_source,Google,15.352
+1,traffic_source,Referred,30.525
+1,traffic_source,Facebook,4.01
+1,traffic_source,Referred From Paid Traffic,7.998
+1,traffic_source,Liftoff,1.87
+1,traffic_source,Moloco,1.369
+2,traffic_source,Organic,27.496
+2,traffic_source,Google,34.699
+2,traffic_source,Referred,11.125
+2,traffic_source,Facebook,8.26
+2,traffic_source,Referred From Paid Traffic,8.278
+2,traffic_source,Liftoff,2.095
+2,traffic_source,Moloco,0.667
+3,traffic_source,Organic,23.033
+3,traffic_source,Google,30.234
+3,traffic_source,Referred,15.256
+3,traffic_source,Facebook,9.218
+3,traffic_source,Referred From Paid Traffic,7.029
+3,traffic_source,Liftoff,3.869
+3,traffic_source,Moloco,2.367
+4,traffic_source,Organic,23.298
+4,traffic_source,Google,21.563
+4,traffic_source,Referred,26.474
+4,traffic_source,Facebook,5.612
+4,traffic_source,Referred From Paid Traffic,11.163
+4,traffic_source,Liftoff,3.151
+4,traffic_source,Moloco,1.772
+5,traffic_source,Organic,21.951
+5,traffic_source,Google,38.066
+5,traffic_source,Referred,8.101
+5,traffic_source,Facebook,14.46
+5,traffic_source,Referred From Paid Traffic,6.591
+5,traffic_source,Liftoff,2.062
+5,traffic_source,Moloco,0.784
+0,operational_profit_segment,LowValue,59.573
+0,operational_profit_segment,MediumValue,17.537
+0,operational_profit_segment,HighValue,3.911
+0,operational_profit_segment,Vip1,1.311
+0,operational_profit_segment,Vip2,0.341
+0,operational_profit_segment,Vip3,0.055
+0,operational_profit_segment,Toddler,10.068
+0,operational_profit_segment,NegativeValue,7.204
+1,operational_profit_segment,LowValue,5.813
+1,operational_profit_segment,Toddler,6.457
+1,operational_profit_segment,NegativeValue,87.678
+2,operational_profit_segment,LowValue,10.883
+2,operational_profit_segment,MediumValue,19.653
+2,operational_profit_segment,HighValue,17.66
+2,operational_profit_segment,Vip1,20.469
+2,operational_profit_segment,Vip2,10.763
+2,operational_profit_segment,Vip3,11.347
+2,operational_profit_segment,Toddler,0.25
+2,operational_profit_segment,NegativeValue,8.974
+3,operational_profit_segment,LowValue,80.882
+3,operational_profit_segment,MediumValue,7.539
+3,operational_profit_segment,HighValue,1.547
+3,operational_profit_segment,Vip1,0.88
+3,operational_profit_segment,Vip2,0.179
+3,operational_profit_segment,Vip3,0.066
+3,operational_profit_segment,Toddler,3.664
+3,operational_profit_segment,NegativeValue,5.244
+4,operational_profit_segment,LowValue,0.345
+4,operational_profit_segment,MediumValue,0.074
+4,operational_profit_segment,Toddler,6.523
+4,operational_profit_segment,NegativeValue,93.034
+5,operational_profit_segment,LowValue,39.634
+5,operational_profit_segment,MediumValue,14.576
+5,operational_profit_segment,HighValue,8.304
+5,operational_profit_segment,Vip1,6.185
+5,operational_profit_segment,Vip2,3.426
+5,operational_profit_segment,Vip3,2.381
+5,operational_profit_segment,NegativeValue,25.494
+0,registration_platform,Web,75.05
+0,registration_platform,iOS App,16.909
+0,registration_platform,Android App,8.041
+1,registration_platform,Web,87.528
+1,registration_platform,iOS App,9.562
+1,registration_platform,Android App,2.91
+2,registration_platform,Web,90.489
+2,registration_platform,iOS App,8.056
+2,registration_platform,Android App,1.455
+3,registration_platform,Web,82.575
+3,registration_platform,iOS App,12.829
+3,registration_platform,Android App,4.596
+4,registration_platform,Web,83.668
+4,registration_platform,iOS App,12.025
+4,registration_platform,Android App,4.308
+5,registration_platform,Web,92.305
+5,registration_platform,iOS App,6.272
+5,registration_platform,Android App,1.423
+0,gender,Male,54.263
+0,gender,Female,45.318
+0,gender,Other,0.419
+1,gender,Male,63.07
+1,gender,Female,36.226
+1,gender,Other,0.703
+2,gender,Male,53.194
+2,gender,Female,46.547
+2,gender,Other,0.26
+3,gender,Male,54.722
+3,gender,Female,44.743
+3,gender,Other,0.536
+4,gender,Male,60.948
+4,gender,Female,38.732
+4,gender,Other,0.32
+5,gender,Male,53.281
+5,gender,Female,46.341
+5,gender,Other,0.377
+0,rg_risk_rating,NoRisk,99.24
+0,rg_risk_rating,Low,0.496
+0,rg_risk_rating,Medium,0.066
+0,rg_risk_rating,High,0.198
+1,rg_risk_rating,NoRisk,99.342
+1,rg_risk_rating,Low,0.606
+2,rg_risk_rating,NoRisk,69.639
+2,rg_risk_rating,Low,19.255
+2,rg_risk_rating,Medium,7.871
+2,rg_risk_rating,High,3.235
+3,rg_risk_rating,NoRisk,96.753
+3,rg_risk_rating,Low,2.057
+3,rg_risk_rating,Medium,0.225
+3,rg_risk_rating,High,0.965
+4,rg_risk_rating,NoRisk,93.982
+4,rg_risk_rating,Low,4.012
+4,rg_risk_rating,Medium,0.997
+4,rg_risk_rating,High,1.009
+5,rg_risk_rating,NoRisk,84.379
+5,rg_risk_rating,Low,12.95
+5,rg_risk_rating,Medium,1.452
+5,rg_risk_rating,High,1.22
+0,aml_risk_rating,Low,99.24
+0,aml_risk_rating,Moderate,0.639
+0,aml_risk_rating,High,0.11
+1,aml_risk_rating,Low,99.828
+1,aml_risk_rating,Moderate,0.09
+1,aml_risk_rating,High,0.082
+2,aml_risk_rating,Low,95.27
+2,aml_risk_rating,Moderate,3.849
+2,aml_risk_rating,High,0.835
+3,aml_risk_rating,Low,99.431
+3,aml_risk_rating,Moderate,0.284
+3,aml_risk_rating,High,0.245
+4,aml_risk_rating,Low,98.842
+4,aml_risk_rating,Moderate,0.924
+4,aml_risk_rating,High,0.222
+5,aml_risk_rating,Low,98.34
+5,aml_risk_rating,Moderate,1.253
+5,aml_risk_rating,High,0.408

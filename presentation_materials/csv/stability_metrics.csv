@@ -1,0 +1,6 @@
+model,perturbation,ari_mean,ari_std,nmi_mean,nmi_std,n_pairs
+K-Means,random init seeds (full data),0.996,0.002,0.993,0.003,10
+Gaussian Mixture,random init seeds (full data),0.804,0.24,0.834,0.204,10
+"Hierarchical (Ward, n=6000)",5 subsample draws (n=6000),0.579,0.119,0.595,0.077,10
+DBSCAN,5 subsample draws (n=15000),0.855,0.015,0.71,0.023,10
+HDBSCAN,5 subsample draws (n=30000),0.64,0.201,0.698,0.101,10

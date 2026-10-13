@@ -1,0 +1,26 @@
+model,metric,value
+K-Means,silhouette,0.234
+Gaussian Mixture,silhouette,0.239
+"Hierarchical (Ward, n=6000)",silhouette,0.228
+DBSCAN,silhouette,0.137
+HDBSCAN,silhouette,-0.142
+K-Means,davies_bouldin,1.428
+Gaussian Mixture,davies_bouldin,1.462
+"Hierarchical (Ward, n=6000)",davies_bouldin,1.513
+DBSCAN,davies_bouldin,2.108
+HDBSCAN,davies_bouldin,4.062
+K-Means,calinski_harabasz,15410.1
+Gaussian Mixture,calinski_harabasz,17112.3
+"Hierarchical (Ward, n=6000)",calinski_harabasz,1492.8
+DBSCAN,calinski_harabasz,362.2
+HDBSCAN,calinski_harabasz,3486.7
+K-Means,stability_ari,0.996
+Gaussian Mixture,stability_ari,0.804
+"Hierarchical (Ward, n=6000)",stability_ari,0.579
+DBSCAN,stability_ari,0.855
+HDBSCAN,stability_ari,0.64
+K-Means,stability_nmi,0.993
+Gaussian Mixture,stability_nmi,0.834
+"Hierarchical (Ward, n=6000)",stability_nmi,0.595
+DBSCAN,stability_nmi,0.71
+HDBSCAN,stability_nmi,0.698

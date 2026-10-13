@@ -1,0 +1,6 @@
+model,params,n_clusters,n_noise,silhouette,silhouette_core,davies_bouldin,calinski_harabasz,stability_ari,stability_nmi
+K-Means,k=6.0,6,0,0.234,,1.428,15410.1,0.996,0.993
+Gaussian Mixture,k=3.0,3,0,0.239,,1.462,17112.3,0.804,0.834
+"Hierarchical (Ward, n=6000)",k=4.0,4,0,0.228,,1.513,1492.8,0.579,0.595
+DBSCAN,"eps=1.0, min_samples=20.0",3,2375,0.137,0.303,2.108,362.2,0.855,0.71
+HDBSCAN,"min_cluster_size=500.0, min_samples=5.0",7,31438,-0.142,0.02,4.062,3486.7,0.64,0.698

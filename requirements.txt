@@ -1,0 +1,25 @@
+# Requirements — Betty_v1 Player Segmentation analysis
+# Python 3.11 environment (miniconda). Versions pinned to those verified in this project.
+
+# --- core data / numerical ---
+pandas==3.0.6
+numpy==2.4.6
+scipy==1.17.1
+
+# --- visualisation ---
+matplotlib==3.11.2
+seaborn==0.13.2
+Pillow==12.3.0        # 3D rotating GIF writer (pillow backend)
+
+# --- machine learning (clustering) ---
+scikit-learn==1.9.1   # KMeans, GaussianMixture, Hierarchical (AgglomerativeClustering), DBSCAN, StandardScaler, PCA, metrics
+hdbscan==0.8.44       # HDBSCAN clustering
+
+# --- presentation / reporting ---
+python-pptx==1.0.2    # slide deck builder
+
+# --- notebooks / interactive output ---
+ipython
+
+# --- optional (not required for this CSV-based pipeline) ---
+# openpyxl    # only if you read/write .xlsx files; the source is a .csv

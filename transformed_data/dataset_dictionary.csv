@@ -1,0 +1,119 @@
+group,feature,kind,formula
+1. Lifecycle,age,derived,"(max(loaded_at) - birth_date)/365.25, kept in [18,100]"
+1. Lifecycle,tenure_days,derived,(max(loaded_at) - registration_date).days
+1. Lifecycle,slog1p_time_to_first_deposit,derived,"slog1p applied to: first_deposit_day - registration_date (calendar days)  [converted from time_to_first_deposit, skew 8.7]"
+1. Lifecycle,account_lifetime_days,derived,"(closed_at - registration_date).days, else tenure_days"
+1. Lifecycle,is_closed,derived,closed_at present or status in terminal states
+1. Lifecycle,is_active,derived,status == 'Approved'
+1. Lifecycle,registration_date,raw,source column
+1. Lifecycle,first_deposit_day,raw,source column
+1. Lifecycle,closed_at,raw,source column
+1. Lifecycle,status,raw,source column
+1. Lifecycle,registration_weekend,derived,registration_date falls on Sat/Sun (registration-time proxy for activity weekday/weekend)
+1. Lifecycle,registration_daypart,derived,hour of registration_date -> morning(6-11)/afternoon(12-17)/evening(18-22)/night (registration-time proxy for day/night)
+2. Engagement / Activity,log1p_total_logins,raw,"log1p applied to: source column  [converted from total_logins, skew 7.6]"
+2. Engagement / Activity,log1p_login_rate,derived,"log1p applied to: total_logins / tenure_months  [converted from login_rate, skew 3.6]"
+2. Engagement / Activity,log1p_logins_per_active_day,derived,"log1p applied to: total_logins / account_lifetime_days (active_days unavailable -> lifetime proxy)  [converted from logins_per_active_day, skew 3.8]"
+2. Engagement / Activity,log1p_login_frequency,derived,"log1p applied to: alias of login_rate  [converted from login_frequency, skew 3.6]"
+2. Engagement / Activity,active_days,unavailable,no such field in source data
+2. Engagement / Activity,sessions,unavailable,no such field in source data
+2. Engagement / Activity,sessions_per_day,unavailable,no such field in source data
+2. Engagement / Activity,average_session_duration,unavailable,no such field in source data
+2. Engagement / Activity,median_session_duration,unavailable,no such field in source data
+2. Engagement / Activity,days_since_last_login,unavailable,no such field in source data
+2. Engagement / Activity,days_since_last_bet,unavailable,no such field in source data
+2. Engagement / Activity,betting_frequency,unavailable,no such field in source data
+2. Engagement / Activity,game_count,unavailable,no such field in source data
+2. Engagement / Activity,game_category_mix,unavailable,no such field in source data
+2. Engagement / Activity,days_since_last_deposit,unavailable,no event-level data in source
+2. Engagement / Activity,days_since_last_withdrawal,unavailable,no event-level data in source
+2. Engagement / Activity,betting_days,unavailable,no event-level data in source
+2. Engagement / Activity,casino_vs_sports,unavailable,no event-level data in source
+2. Engagement / Activity,game_diversity,unavailable,no event-level data in source
+2. Engagement / Activity,preferred_product,unavailable,no event-level data in source
+2. Engagement / Activity,weekday/weekend,unavailable,needs activity dates; registration_weekend (group 1) is the registration-time proxy
+2. Engagement / Activity,day/night,unavailable,needs activity timestamps; registration_daypart (group 1) is the registration-time proxy
+2. Engagement / Activity,activity trend,unavailable,needs time series of player activity
+3. Economic / Value,monetary_scale,derived,log1p(total_deposits); replaces total_deposits
+3. Economic / Value,log1p_total_withdrawals,raw,"log1p applied to: source column  [converted from total_withdrawals, skew 26.6]"
+3. Economic / Value,log1p_betting_intensity,derived,"log1p applied to: total_bets / total_deposits (0/0 -> 0, deposit-free betting -> NaN); replaces total_bets  [converted from betting_intensity, skew 58.5]"
+3. Economic / Value,log1p_total_wins,raw,"log1p applied to: source column  [converted from total_wins, skew 30.6]"
+3. Economic / Value,slog1p_net_deposits,derived,"slog1p applied to: total_deposits - total_withdrawals  [converted from net_deposits, skew 23.6]"
+3. Economic / Value,slog1p_GGR,derived,"slog1p applied to: total_bets - total_wins (both present)  [converted from GGR, skew 25.8]"
+3. Economic / Value,margin,removed,redundant: margin = 1 - win_rate (r = -1); removed
+3. Economic / Value,log1p_deposit_rate,derived,"log1p applied to: total_deposits / tenure_months  [converted from deposit_rate, skew 20.5]"
+3. Economic / Value,log1p_withdrawal_rate,derived,"log1p applied to: total_withdrawals / tenure_months  [converted from withdrawal_rate, skew 22.5]"
+3. Economic / Value,log1p_betting_rate,derived,"log1p applied to: total_bets / tenure_months  [converted from betting_rate, skew 26.3]"
+3. Economic / Value,log1p_win_rate,derived,"log1p applied to: total_wins / total_bets (player win %)  [converted from win_rate, skew 134.2]"
+3. Economic / Value,log1p_winning_rate,derived,"log1p applied to: total_wins / tenure_months  [converted from winning_rate, skew 26.9]"
+3. Economic / Value,log1p_betting_to_deposit_ratio,derived,"log1p applied to: same formula as betting_intensity  [converted from betting_to_deposit_ratio, skew 58.5]"
+3. Economic / Value,slog1p_GGR_per_day,derived,"slog1p applied to: GGR / account_lifetime_days  [converted from GGR_per_day, skew -3.3]"
+3. Economic / Value,log1p_deposits_per_month,derived,"log1p applied to: alias of deposit_rate  [converted from deposits_per_month, skew 20.5]"
+3. Economic / Value,log1p_bets_per_month,derived,"log1p applied to: alias of betting_rate  [converted from bets_per_month, skew 26.3]"
+3. Economic / Value,NGR,unavailable,no such field in source data
+3. Economic / Value,bonus_cost,unavailable,no such field in source data
+3. Economic / Value,bonus_to_deposit_ratio,unavailable,no such field in source data
+3. Economic / Value,average_bet,unavailable,no such field in source data
+3. Economic / Value,median_bet,unavailable,no such field in source data
+3. Economic / Value,NGR_per_day,unavailable,no such field in source data
+3. Economic / Value,profitability,unavailable,no such field in source data
+3. Economic / Value,deposit_count,unavailable,no event-level data in source
+3. Economic / Value,withdrawal_count,unavailable,no event-level data in source
+3. Economic / Value,bets_per_session,unavailable,no event-level data in source
+3. Economic / Value,turnover_per_active_day,unavailable,no event-level data in source
+4. Acquisition / Marketing,traffic_source,raw,source column
+4. Acquisition / Marketing,sub_traffic_source,raw,source column
+4. Acquisition / Marketing,registration_platform,raw,source column
+4. Acquisition / Marketing,referral_flag,derived,referral_code or referrer_player_id present
+4. Acquisition / Marketing,utm_source,raw,source column
+4. Acquisition / Marketing,utm_medium,raw,source column
+4. Acquisition / Marketing,utm_campaign,raw,source column
+4. Acquisition / Marketing,utm_content,raw,source column
+4. Acquisition / Marketing,utm_term,raw,source column
+4. Acquisition / Marketing,ad_campaign_id,raw,source column
+4. Acquisition / Marketing,ad_group_id,raw,source column
+4. Acquisition / Marketing,ad_keyword_id,raw,source column
+4. Acquisition / Marketing,facebook_click_id,raw,source column
+4. Acquisition / Marketing,google_click_id,raw,source column
+4. Acquisition / Marketing,microsoft_click_id,raw,source column
+4. Acquisition / Marketing,tiktok_click_id,raw,source column
+4. Acquisition / Marketing,d_click_id,raw,source column
+4. Acquisition / Marketing,referral_code,raw,source column
+4. Acquisition / Marketing,referrer_player_id,raw,source column
+5. Demographics,age,shared,same column as group 1
+5. Demographics,gender,raw,source column
+5. Demographics,country,raw,source column
+5. Demographics,city,raw,source column
+5. Demographics,occupation,raw,source column
+5. Demographics,employer_name,excluded,PII - excluded by decision
+5. Demographics,employer_city,excluded,PII - excluded by decision
+5. Demographics,employer_country,excluded,PII - excluded by decision
+5. Demographics,employer_postal_code,excluded,PII - excluded by decision
+5. Demographics,employer_phone_number,excluded,PII - excluded by decision
+6. VIP / Commercial Context,vip_level,raw,source column
+6. VIP / Commercial Context,portfolio_vip_status,raw,source column
+6. VIP / Commercial Context,player_vip_account_manager,raw,source column
+6. VIP / Commercial Context,vip_status_updated_at,raw,source column
+6. VIP / Commercial Context,operational_profit_segment,raw,source column
+6. VIP / Commercial Context,max_profit_segment_rank,raw,source column
+7. AML / Compliance,aml_risk_rating,raw,source column
+7. AML / Compliance,is_pep,raw,source column
+7. AML / Compliance,has_sanctions,raw,source column
+8. Responsible Gambling,ever_self_excluded,raw,source column
+9. Fraud / Abuse / Integrity,is_bonus_abuser,raw,source column
+10. Account / Security / Preferences,gaming_level,raw,source column
+10. Account / Security / Preferences,allow_sms,raw,source column
+10. Account / Security / Preferences,allow_email,raw,source column
+10. Account / Security / Preferences,has_mfa_enabled,raw,source column
+11. Technical / System Metadata,modified_at,raw,source column
+11. Technical / System Metadata,loaded_at,raw,source column
+12. Identification / PII - EXCLUDE,player_id,key,retained as table key (excluded from features)
+12. Identification / PII - EXCLUDE,email,excluded,PII - not carried into the dataset
+12. Identification / PII - EXCLUDE,phone_number,excluded,PII - not carried into the dataset
+12. Identification / PII - EXCLUDE,first_name,excluded,PII - not carried into the dataset
+12. Identification / PII - EXCLUDE,middle_name,excluded,PII - not carried into the dataset
+12. Identification / PII - EXCLUDE,last_name,excluded,PII - not carried into the dataset
+12. Identification / PII - EXCLUDE,employer_name,excluded,PII - not carried into the dataset
+12. Identification / PII - EXCLUDE,employer_phone_number,excluded,PII - not carried into the dataset
+12. Identification / PII - EXCLUDE,employer_postal_code,excluded,PII - not carried into the dataset
+12. Identification / PII - EXCLUDE,birth_date,excluded,identifier - used to derive age only
